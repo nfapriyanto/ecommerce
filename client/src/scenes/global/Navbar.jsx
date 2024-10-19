@@ -122,5 +122,5 @@ function Navbar() {
     </Box>
   );
 }
-
+console.log("hello world")
 export default Navbar;
