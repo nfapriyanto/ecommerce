@@ -5,11 +5,11 @@ import {
   PersonOutline,
   ShoppingBagOutlined,
   MenuOutlined,
-  SearchOutlined,
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { shades } from "../../theme";
 import { setIsCartOpen } from "../../state";
+import Search from "./Search";  // Mengimpor komponen Search
 
 function Navbar() {
   const navigate = useNavigate();
@@ -70,26 +70,7 @@ function Navbar() {
           columnGap="20px"
           zIndex="2"
         >
-          <Box display="flex" alignItems="center">
-            <InputBase
-              sx={{ ml: 1, flex: 1 }}
-              placeholder="Search..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              onKeyPress={(e) => {
-                if (e.key === "Enter") {
-                  handleSearch();
-                }
-              }}
-            />
-            <IconButton
-              id="search-icon"
-              sx={{ color: "black" }}
-              onClick={handleSearch}
-            >
-              <SearchOutlined />
-            </IconButton>
-          </Box>
+          <Search /> {/* Menambahkan komponen Search di sini */}
           <IconButton sx={{ color: "black" }}>
             <PersonOutline />
           </IconButton>
@@ -122,5 +103,5 @@ function Navbar() {
     </Box>
   );
 }
-console.log("a")
+
 export default Navbar;
