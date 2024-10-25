@@ -37,7 +37,8 @@ const AddressForm = ({
       <TextField
         fullWidth
         type="text"
-        label="First Name"
+        //nama depan
+        label="Nama Depan"
         onBlur={handleBlur}
         onChange={handleChange}
         value={values.firstName}
@@ -49,7 +50,8 @@ const AddressForm = ({
       <TextField
         fullWidth
         type="text"
-        label="Last Name"
+        //nama belakang
+        label="Nama Belakang"
         onBlur={handleBlur}
         onChange={handleChange}
         value={values.lastName}
@@ -61,7 +63,8 @@ const AddressForm = ({
       <TextField
         fullWidth
         type="text"
-        label="Country"
+        //negara
+        label="Negara"
         onBlur={handleBlur}
         onChange={handleChange}
         value={values.country}
@@ -73,7 +76,8 @@ const AddressForm = ({
       <TextField
         fullWidth
         type="text"
-        label="Street Address"
+        //alamat
+        label="Alamat"
         onBlur={handleBlur}
         onChange={handleChange}
         value={values.street1}
@@ -85,7 +89,8 @@ const AddressForm = ({
       <TextField
         fullWidth
         type="text"
-        label="Street Address 2 (optional)"
+      //nomor telepon
+        label="Detail Alam"
         onBlur={handleBlur}
         onChange={handleChange}
         value={values.street2}
@@ -97,7 +102,8 @@ const AddressForm = ({
       <TextField
         fullWidth
         type="text"
-        label="City"
+        //kota
+        label="Kota"
         onBlur={handleBlur}
         onChange={handleChange}
         value={values.city}
@@ -109,7 +115,8 @@ const AddressForm = ({
       <TextField
         fullWidth
         type="text"
-        label="State"
+        //kecamatan
+        label="Kecamatan"
         onBlur={handleBlur}
         onChange={handleChange}
         value={values.state}
@@ -121,7 +128,8 @@ const AddressForm = ({
       <TextField
         fullWidth
         type="text"
-        label="Zip Code"
+        //kode pos
+        label="Kode Pos"
         onBlur={handleBlur}
         onChange={handleChange}
         value={values.zipCode}

@@ -1,40 +1,37 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Badge, Box, IconButton, InputBase, Menu, MenuItem } from "@mui/material";
+import { Badge, Box, IconButton, Menu, MenuItem } from "@mui/material";
 import {
   PersonOutline,
   ShoppingBagOutlined,
   MenuOutlined,
+  Logout,
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { shades } from "../../theme";
 import { setIsCartOpen } from "../../state";
-import Search from "./Search";  // Mengimpor komponen Search
+import Search from "./Search";
 
 function Navbar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
+  const user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
 
-  const handleSearch = async () => {
-    try {
-      const response = await fetch(
-        `http://localhost:1337/api/items?populate=image&filters[name][$contains]=${searchTerm}`
-      );
-      const data = await response.json();
-      setSearchResults(data.data);
-      setAnchorEl(document.getElementById("search-icon"));
-    } catch (error) {
-      console.error("Error searching items:", error);
-    }
+  const handleProfileClick = (event) => {
+    setAnchorEl(event.currentTarget);
   };
 
-  const handleSearchItemClick = (itemId) => {
+  const handleClose = () => {
     setAnchorEl(null);
-    navigate(`/item/${itemId}`);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    handleClose();
+    navigate('/');
   };
 
   return (
@@ -70,10 +67,39 @@ function Navbar() {
           columnGap="20px"
           zIndex="2"
         >
-          <Search /> {/* Menambahkan komponen Search di sini */}
-          <IconButton sx={{ color: "black" }}>
+          <Search />
+          <IconButton 
+            sx={{ color: "black" }}
+            onClick={handleProfileClick}
+          >
             <PersonOutline />
           </IconButton>
+          <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            {user ? (
+              [
+                <MenuItem key="username" disabled>
+                  {user.username}
+                </MenuItem>,
+                <MenuItem key="logout" onClick={handleLogout}>
+                  <Logout sx={{ mr: 1 }} />
+                  Logout
+                </MenuItem>
+              ]
+            ) : (
+              [
+                <MenuItem key="signin" onClick={() => { handleClose(); navigate('/signin'); }}>
+                  Sign In
+                </MenuItem>,
+                <MenuItem key="signup" onClick={() => { handleClose(); navigate('/signup'); }}>
+                  Sign Up
+                </MenuItem>
+              ]
+            )}
+          </Menu>
           <Badge
             badgeContent={cart.length}
             color="secondary"
@@ -89,7 +115,13 @@ function Navbar() {
             }}
           >
             <IconButton
-              onClick={() => dispatch(setIsCartOpen({}))}
+              onClick={() => {
+                if (!user) {
+                  navigate('/signin');
+                  return;
+                }
+                dispatch(setIsCartOpen({}));
+              }}
               sx={{ color: "black" }}
             >
               <ShoppingBagOutlined />

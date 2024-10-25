@@ -44,7 +44,7 @@ const ShoppingList = () => {
   return (
     <Box width="80%" margin="80px auto">
       <Typography variant="h3" textAlign="center">
-        Our Featured <b>Products</b>
+        <b>Rekomendasi</b> Produk
       </Typography>
       <Tabs
         textColor="primary"
@@ -60,10 +60,10 @@ const ShoppingList = () => {
           },
         }}
       >
-        <Tab label="ALL" value="all" />
-        <Tab label="NEW ARRIVALS" value="newArrivals" />
-        <Tab label="BEST SELLERS" value="bestSellers" />
-        <Tab label="TOP RATED" value="topRated" />
+        <Tab label="SEMUA" value="all" />
+        <Tab label="PRODUK BARU" value="newArrivals" />
+        <Tab label="TERLARIS" value="bestSellers" />
+        <Tab label="TERBAIK" value="topRated" />
       </Tabs>
       <Box
         margin="0 auto"

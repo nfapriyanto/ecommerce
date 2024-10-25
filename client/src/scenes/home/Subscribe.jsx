@@ -10,9 +10,9 @@ const Subscribe = () => {
       <IconButton>
         <MarkEmailReadOutlinedIcon fontSize="large" />
       </IconButton>
-      <Typography variant="h3">Subscribe To Our Newsletter</Typography>
+      <Typography variant="h3">Berlangganan Info Terbaru Kami</Typography>
       <Typography>
-        and receive $20 coupon for your first order when you checkout
+        dan dapatkan kupon Rp. 50.000,00 untuk pesanan pertama Anda
       </Typography>
       <Box
         p="2px 4px"
@@ -24,13 +24,13 @@ const Subscribe = () => {
       >
         <InputBase
           sx={{ ml: 1, flex: 1 }}
-          placeholder="Enter email"
+          placeholder="Masukkan Email Anda"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
         />
         <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
         <Typography sx={{ p: "10px", ":hover": { cursor: "pointer" } }}>
-          Subscribe
+          Langganan
         </Typography>
       </Box>
     </Box>

@@ -36,33 +36,33 @@ function Footer() {
 
         <Box>
           <Typography variant="h4" fontWeight="bold" mb="30px">
-            About Us
+            Tentang Kami
           </Typography>
-          <Typography mb="30px">Careers</Typography>
-          <Typography mb="30px">Our Stores</Typography>
-          <Typography mb="30px">Terms & Conditions</Typography>
-          <Typography mb="30px">Privacy Policy</Typography>
+          <Typography mb="30px">Karier</Typography>
+          <Typography mb="30px">Toko Kami</Typography>
+          <Typography mb="30px">Syarat & Ketentuan</Typography>
+          <Typography mb="30px">Kebijakan Privasi</Typography>
         </Box>
 
         <Box>
           <Typography variant="h4" fontWeight="bold" mb="30px">
-            Customer Care
+            Layanan Pelanggan
           </Typography>
-          <Typography mb="30px">Help Center</Typography>
-          <Typography mb="30px">Track Your Order</Typography>
-          <Typography mb="30px">Corporate & Bulk Purchasing</Typography>
-          <Typography mb="30px">Returns & Refunds</Typography>
+          <Typography mb="30px">Pusat Bantuan</Typography>
+          <Typography mb="30px">Lacak Pesanan Anda</Typography>
+          <Typography mb="30px">Pembelian Korporat & Grosir</Typography>
+          <Typography mb="30px">Pengembalian & Penukaran</Typography>
         </Box>
 
         <Box width="clamp(20%, 25%, 30%)">
           <Typography variant="h4" fontWeight="bold" mb="30px">
-            Contact Us
+            Hubungi Kami
           </Typography>
           <Typography mb="30px">
-            50 north Whatever Blvd, Washington, DC 10501
+            Jl. Margonda Raya No. 100, Depok, Jawa Barat 16424
           </Typography>
           <Typography mb="30px" sx={{ wordWrap: "break-word" }}>
-            Email: mredwardroh@gmail.com
+            Email: contact@gunadarma.com
           </Typography>
           <Typography mb="30px">(222)333-4444</Typography>
         </Box>

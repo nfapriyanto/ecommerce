@@ -1,16 +1,18 @@
-// ReviewSection.jsx
 import { useState, useEffect } from 'react';
 import { Box, Typography, Rating, Button, TextField, Modal, IconButton, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import { PhotoCamera, Close, Delete } from '@mui/icons-material';
 import { shades } from '../../theme';
+import { useNavigate } from 'react-router-dom';
 
 const ReviewSection = ({ itemId }) => {
+  const navigate = useNavigate();
+  const user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
   const [reviews, setReviews] = useState([]);
   const [filterRating, setFilterRating] = useState('all');
   const [modalOpen, setModalOpen] = useState(false);
   const [showAllReviews, setShowAllReviews] = useState(false);
   const [newReview, setNewReview] = useState({
-    userName: '',
+    userName: user?.username || '',
     review: '',
     rating: 5,
     photos: []
@@ -61,10 +63,15 @@ const ReviewSection = ({ itemId }) => {
   const handleSubmitReview = async (e) => {
     e.preventDefault();
     
+    if (!user) {
+      navigate('/signin');
+      return;
+    }
+
     const formData = new FormData();
     formData.append('data', JSON.stringify({
       itemId: itemId,
-      userName: newReview.userName,
+      userName: user.username,
       review: newReview.review,
       rating: newReview.rating,
     }));
@@ -77,12 +84,15 @@ const ReviewSection = ({ itemId }) => {
     try {
       await fetch('http://localhost:1337/api/reviews', {
         method: 'POST',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
         body: formData,
       });
       
       setModalOpen(false);
       setNewReview({
-        userName: '',
+        userName: user?.username || '',
         review: '',
         rating: 5,
         photos: []
@@ -129,13 +139,18 @@ const ReviewSection = ({ itemId }) => {
             ))}
           </Select>
         </FormControl>
-
         <Button
-          onClick={() => setModalOpen(true)}
+          onClick={() => {
+            if (!user) {
+              navigate('/signin');
+              return;
+            }
+            setModalOpen(true);
+          }}
           sx={{
-            backgroundColor: shades.primary[300],
+            backgroundColor: shades.primary[400],
             color: 'white',
-            '&:hover': { backgroundColor: shades.primary[400] }
+            '&:hover': { backgroundColor: shades.primary[500] }
           }}
         >
           Write a Review
@@ -254,7 +269,7 @@ const ReviewSection = ({ itemId }) => {
               fullWidth
               label="Your Name"
               value={newReview.userName}
-              onChange={(e) => setNewReview({ ...newReview, userName: e.target.value })}
+              disabled
               margin="normal"
               required
             />

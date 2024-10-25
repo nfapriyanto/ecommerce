@@ -17,7 +17,7 @@ const Search = () => {
     <Box display="flex">
       <InputBase
         sx={{ ml: 1, flex: 1 }}
-        placeholder="Search..."
+        placeholder="Pencarian..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         onKeyPress={(e) => {
