@@ -10,6 +10,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { shades } from "../../theme";
 import { addToCart } from "../../state";
 import { useDispatch } from "react-redux";
+import ReviewSection from "./ReviewSection";
 
 const ItemDetails = () => {
   const dispatch = useDispatch();
@@ -129,7 +130,7 @@ const ItemDetails = () => {
         {value === "description" && (
           <div>{item?.attributes?.longDescription}</div>
         )}
-        {value === "reviews" && <div>reviews</div>}
+        {value === "reviews" && <ReviewSection itemId={itemId} />}
       </Box>
 
       {/* RELATED ITEMS */}
