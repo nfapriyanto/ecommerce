@@ -15,6 +15,7 @@ const Item = ({ item, width }) => {
   const {
     palette: { neutral },
   } = useTheme();
+  const user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
 
   const { category, price, name, image } = item.attributes;
   const {
@@ -26,6 +27,14 @@ const Item = ({ item, width }) => {
       },
     },
   } = image;
+
+  const handleAddToCart = () => {
+    if (!user) {
+      navigate('/signin');
+      return;
+    }
+    dispatch(addToCart({ item: { ...item, count: 1 } }));
+  };
 
   return (
     <Box width={width}>
@@ -66,9 +75,7 @@ const Item = ({ item, width }) => {
               </IconButton>
             </Box>
             <Button
-              onClick={() => {
-                dispatch(addToCart({ item: { ...item, count } }));
-              }}
+              onClick={handleAddToCart}
               sx={{ backgroundColor: shades.primary[300], color: "white" }}
             >
               Add to Cart

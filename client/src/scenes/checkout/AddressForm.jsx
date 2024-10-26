@@ -90,7 +90,7 @@ const AddressForm = ({
         fullWidth
         type="text"
       //nomor telepon
-        label="Detail Alam"
+        label="Detail Alamat"
         onBlur={handleBlur}
         onChange={handleChange}
         value={values.street2}

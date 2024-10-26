@@ -11,6 +11,7 @@ import { shades } from "../../theme";
 import { addToCart } from "../../state";
 import { useDispatch } from "react-redux";
 import ReviewSection from "./ReviewSection";
+import { useNavigate } from "react-router-dom";
 
 const ItemDetails = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,8 @@ const ItemDetails = () => {
   const [count, setCount] = useState(1);
   const [item, setItem] = useState(null);
   const [items, setItems] = useState([]);
+  const navigate = useNavigate();
+  const user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -50,6 +53,14 @@ const ItemDetails = () => {
     getItem();
     getItems();
   }, [itemId]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleAddToCart = () => {
+    if (!user) {
+      navigate('/signin');
+      return;
+    }
+    dispatch(addToCart({ item: { ...item, count } }));
+  };
 
   return (
     <Box width="80%" m="80px auto">
@@ -104,8 +115,8 @@ const ItemDetails = () => {
                 minWidth: "150px",
                 padding: "10px 40px",
               }}
-              onClick={() => dispatch(addToCart({ item: { ...item, count } }))}
-            >
+              onClick={handleAddToCart}
+              >
               ADD TO CART
             </Button>
           </Box>

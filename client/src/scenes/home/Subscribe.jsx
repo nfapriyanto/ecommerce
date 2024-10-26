@@ -24,7 +24,7 @@ const Subscribe = () => {
       >
         <InputBase
           sx={{ ml: 1, flex: 1 }}
-          placeholder="Masukkan Email Anda"
+          placeholder="Masukkan Email Anda di sini"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
         />

@@ -32,7 +32,7 @@ const SignIn = () => {
         localStorage.setItem('user', JSON.stringify(data.user));
         navigate('/');
       } else {
-        setError('Invalid credentials');
+        setError('Invalid Email or Password');
       }
     } catch (error) {
       setError('An error occurred. Please try again.');
